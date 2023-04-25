@@ -58,9 +58,7 @@ class StackedLocator {
   /// function used for this type or based on a name.
   /// for factories you can pass up to 2 parameters [param1,param2] they have to match the types
   /// given at registration with [registerFactoryParam()]
-  T get<T extends Object>(
-          {String? instanceName, dynamic param1, dynamic param2}) =>
-      locator.get<T>(
+  T get<T extends Object>({String? instanceName, dynamic param1, dynamic param2}) => locator.get<T>(
         instanceName: instanceName,
         param1: param1,
         param2: param2,
@@ -70,9 +68,7 @@ class StackedLocator {
   /// not ready with its initialization.
   /// for async factories you can pass up to 2 parameters [param1,param2] they have to match the types
   /// given at registration with [registerFactoryParamAsync()]
-  Future<T> getAsync<T extends Object>(
-          {String? instanceName, dynamic param1, dynamic param2}) =>
-      locator.getAsync<T>(
+  Future<T> getAsync<T extends Object>({String? instanceName, dynamic param1, dynamic param2}) => locator.getAsync<T>(
         instanceName: instanceName,
         param1: param1,
         param2: param2,
@@ -80,9 +76,7 @@ class StackedLocator {
 
   /// Callable class so that you can write `GetIt.instance<MyType>` instead of
   /// `GetIt.instance.get<MyType>`
-  T call<T extends Object>(
-          {String? instanceName, dynamic param1, dynamic param2}) =>
-      locator<T>(
+  T call<T extends Object>({String? instanceName, dynamic param1, dynamic param2}) => locator<T>(
         instanceName: instanceName,
         param1: param1,
         param2: param2,
@@ -339,9 +333,7 @@ class StackedLocator {
 
   /// Tests if an [instance] of an object or aType [T] or a name [instanceName]
   /// is registered inside GetIt
-  bool isRegistered<T extends Object>(
-          {Object? instance, String? instanceName}) =>
-      locator.isRegistered<T>(
+  bool isRegistered<T extends Object>({Object? instance, String? instanceName}) => locator.isRegistered<T>(
         instance: instance,
         instanceName: instanceName,
       );
@@ -358,8 +350,7 @@ class StackedLocator {
   /// [dispose] if `false` it only resets without calling any dispose
   /// functions
   /// As dispose funcions can be async, you should await this function.
-  Future<void> resetScope({bool dispose = true}) =>
-      locator.resetScope(dispose: dispose);
+  Future<void> resetScope({bool dispose = true}) => locator.resetScope(dispose: dispose);
 
   /// Creates a new registration scope. If you register types after creating
   /// a new scope they will hide any previous registration of the same type.
@@ -368,8 +359,7 @@ class StackedLocator {
   /// by using the name.
   /// [dispose] function that will be called when you pop this scope. The scope
   /// is still valied while it is executed
-  void pushNewScope({String? scopeName, ScopeDisposeFunc? dispose}) =>
-      locator.pushNewScope(
+  void pushNewScope({String? scopeName, ScopeDisposeFunc? dispose}) => locator.pushNewScope(
         scopeName: scopeName,
         dispose: dispose,
       );
@@ -397,10 +387,7 @@ class StackedLocator {
   /// if you need to dispose some resources before the reset, you can
   /// provide a [disposingFunction]. This function overrides the disposing
   /// you might have provided when registering.
-  void resetLazySingleton<T extends Object>(
-          {Object? instance,
-          String? instanceName,
-          void Function(T)? disposingFunction}) =>
+  void resetLazySingleton<T extends Object>({T? instance, String? instanceName, void Function(T)? disposingFunction}) =>
       locator.resetLazySingleton<T>(
         instance: instance,
         instanceName: instanceName,
@@ -411,10 +398,7 @@ class StackedLocator {
   /// if you need to dispose any resources you can do it using [disposingFunction] function
   /// that provides a instance of your class to be disposed. This function overrides the disposing
   /// you might have provided when registering.
-  void unregister<T extends Object>(
-          {Object? instance,
-          String? instanceName,
-          void Function(T)? disposingFunction}) =>
+  void unregister<T extends Object>({Object? instance, String? instanceName, void Function(T)? disposingFunction}) =>
       locator.unregister<T>(
         instance: instance,
         instanceName: instanceName,
@@ -429,9 +413,7 @@ class StackedLocator {
   /// were ready in the given time. The Exception contains details on which Singletons are not ready yet.
   /// if [allReady] should not wait for the completion of async Signletons set
   /// [ignorePendingAsyncCreation==true]
-  Future<void> allReady(
-          {Duration? timeout, bool ignorePendingAsyncCreation = false}) =>
-      locator.allReady(
+  Future<void> allReady({Duration? timeout, bool ignorePendingAsyncCreation = false}) => locator.allReady(
         timeout: timeout,
         ignorePendingAsyncCreation: ignorePendingAsyncCreation,
       );
@@ -457,9 +439,7 @@ class StackedLocator {
 
   /// Checks if an async Singleton defined by an [instance], a type [T] or an [instanceName]
   /// is ready without waiting
-  bool isReadySync<T extends Object>(
-          {Object? instance, String? instanceName}) =>
-      locator.isReadySync<T>(
+  bool isReadySync<T extends Object>({Object? instance, String? instanceName}) => locator.isReadySync<T>(
         instance: instance,
         instanceName: instanceName,
       );
@@ -468,8 +448,7 @@ class StackedLocator {
   /// if [allReady] should not wait for the completion of async Signletons set
   /// [ignorePendingAsyncCreation==true]
   // ignore: avoid_positional_boolean_parameters
-  bool allReadySync([bool ignorePendingAsyncCreation = false]) =>
-      locator.allReadySync(ignorePendingAsyncCreation);
+  bool allReadySync([bool ignorePendingAsyncCreation = false]) => locator.allReadySync(ignorePendingAsyncCreation);
 
   /// Used to manually signal the ready state of a Singleton.
   /// If you want to use this mechanism you have to pass [signalsReady==true] when registering
